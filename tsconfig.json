@@ -1,0 +1,7 @@
+{
+  "extends": "./.project-calavera/tsconfig.json",
+  "compilerOptions": {
+    "declaration": true,
+    "outDir": "./dist"
+  }
+}
