@@ -1,5 +1,5 @@
 {
-  "name": "store",
+  "name": "storage-actions",
   "version": "0.0.1",
   "description": "A TypeScript utility library for managing storage in the browser",
   "type": "module",
