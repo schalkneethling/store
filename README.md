@@ -1,2 +1,3 @@
-# store
-A collection of utilities for working with storage in the browser
+# storage-actions
+
+A TypeScript utility library for managing storage in the browser

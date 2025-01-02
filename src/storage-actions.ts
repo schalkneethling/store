@@ -1,19 +1,21 @@
 type JSONPrimitive = string | number | boolean | null;
 
-type JSONObject = { [key: string]: JSONValue };
+interface JSONObject {
+  [key: string]: JSONValue;
+}
 
 type JSONArray = JSONValue[];
 
 type JSONValue = JSONPrimitive | JSONObject | JSONArray;
 
 /**
- * Type for storage operation results
+ * Interface for storage operation results
  */
-type StorageResult<T extends JSONValue> = {
+interface StorageResult<T extends JSONValue> {
   success: boolean;
   data?: T;
   error?: string;
-};
+}
 
 const storageActions = {
   getEntryFromStorage: <T extends JSONValue>(key: string): StorageResult<T> => {
@@ -66,7 +68,7 @@ const storageActions = {
         ...data,
         ...Object.fromEntries(
           Object.entries(value).filter(
-            ([key]) => !(data as JSONObject).hasOwnProperty(key),
+            ([key]) => !Object.prototype.hasOwnProperty.call(data, key),
           ),
         ),
       } as T;
@@ -81,13 +83,13 @@ const storageActions = {
     }
   },
 
-  hasPropertyForKey: <T extends JSONObject>(
+  hasPropertyForKey: (
     key: string,
-    property: keyof T,
+    property: keyof JSONObject,
   ): StorageResult<boolean> => {
     try {
       const { success, data, error } =
-        storageActions.getEntryFromStorage<T>(key);
+        storageActions.getEntryFromStorage<JSONObject>(key);
 
       if (!success) {
         return { success: false, error };
@@ -121,7 +123,7 @@ const storageActions = {
         ...data,
         ...Object.fromEntries(
           Object.entries(propertyUpdates).filter(([key]) =>
-            (data as JSONObject).hasOwnProperty(key),
+            Object.prototype.hasOwnProperty.call(data, key),
           ),
         ),
       } as T;
