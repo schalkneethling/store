@@ -1,10 +1,10 @@
 {
   "name": "storage-actions",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "A TypeScript utility library for managing storage in the browser",
   "type": "module",
-  "exports": "./dist/store.js",
-  "types": "./dist/store.d.ts",
+  "exports": "./dist/storage-actions.js",
+  "types": "./dist/storage-actions.d.ts",
   "files": [
     "dist"
   ],
